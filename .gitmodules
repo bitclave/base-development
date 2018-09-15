@@ -1,0 +1,6 @@
+[submodule "base-node"]
+	path = base-node
+	url = git@github.com:bitclave/base-node.git
+[submodule "base-matcher"]
+	path = base-matcher
+	url = git@github.com:bitclave/base-matcher.git
