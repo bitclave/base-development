@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 pushd base-node
 ./gradlew clean build -x test
