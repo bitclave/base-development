@@ -31,7 +31,7 @@ services:
   nodedb:
     image: postgres
     ports:
-      - "5432:5432"
+      - "54321:54322"
     restart: on-failure
     environment:
       - POSTGRES_PASSWORD=bitclave
