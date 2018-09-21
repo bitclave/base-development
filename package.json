@@ -1,0 +1,23 @@
+{
+    "name": "base-development",
+    "version": "1.0.0",
+    "license": "MIT",
+    "scripts": {
+        "postinstall": "node ./remove-bit-core-lib.js",
+        "test": "mocha --reporter=min --no-colors --require babel-core/register --require babel-polyfill tests/*"
+    },
+    "dependencies": {
+        "@bitclave/base-client-js": "^0.1.2"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.3",
+        "babel-polyfill": "^6.26.0",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-stage-0": "^6.24.1",
+        "babel-register": "^6.26.0",
+        "chai": "^4.1.2",
+        "mocha": "^5.2.0",
+        "wait-until": "0.0.2"
+    }
+}
