@@ -19,14 +19,11 @@
     $ ./build.sh #this automatically starts all services
 ```
 
-1. To start base platform and services
+2. To start base platform and services
 
 ```
     $ ./start.sh #use this to start services without rebuilding
 ```
-
-2. Its time to run engineering example
-
 
 # How to stop?
 
