@@ -4,7 +4,7 @@ import Base from "@bitclave/base-client-js";
 import {SearchRequest} from "@bitclave/base-client-js";
 import { Offer } from "@bitclave/base-client-js";
 
-var waitUntil = require('wait-until');
+import { expect } from 'chai';
 
 async function createUser(base, passphrase) {
     let account;
@@ -14,11 +14,19 @@ async function createUser(base, passphrase) {
         console.log("Account already exists: " + JSON.stringify(account));
     } catch(e) {
         console.log("\nAccount doesn't exist, Creating a new one for:", passphrase);
-        account = await base.accountManager.registration(passphrase, "somemessage");
-        console.log("Account created:" + JSON.stringify(account));
+        try {
+            account = await base.accountManager.registration(passphrase, "somemessage");
+            console.log("Account created:" + JSON.stringify(account));
+        } catch(e) {
+            console.log("Account created failed:", e);
+            throw new Error(e);
+        }
     }
     return account;
 }
+
+const createBase = () => new Base('http://localhost:8080', 'localhost', 'POSTGRES', '');
+const waitFor = delay => new Promise(resolve => setTimeout(resolve, delay));
 
 describe('Matching', async () => {
     const passPhraseAlice = 'Alice';
@@ -33,10 +41,6 @@ describe('Matching', async () => {
     var accBussiness;
     var accMatcher;
 
-    function createBase() {
-        return new Base('http://localhost:8080', 'localhost', 'POSTGRES', '');
-    }
-
     beforeEach(async () => {
     });
 
@@ -50,7 +54,7 @@ describe('Matching', async () => {
     });
 
     it('request and offer', async function() {
-        this.timeout(25000);
+        this.timeout(7000);
 
         let searchRequestTags = new Map();
         searchRequestTags.set("type", "car");
@@ -72,19 +76,14 @@ describe('Matching', async () => {
             let savedOffer = await baseBussiness.offerManager.saveOffer(offer);
             console.log("\n ABC Inc saved offer:" + JSON.stringify(savedOffer));
 
-            console.log("\n Checking if matched.....waiting for atmost 20 seconds")
-            waitUntil()
-                .interval(20000)
-                .times(1)
-                .condition(async function() {
-                    let matchedOffer = await baseBussiness.searchManager.getSearchResult(savedSearchRequest.id);
-                    return (matchedOffer.length > 0);
-                })
-                .done(async function(result) {
-                    if(result) {
-                        return baseBussiness.searchManager.getSearchResult(savedSearchRequest.id);
-                    }
-                });
+            console.log("\n Checking if matched.....waiting for atmost 6 seconds");
+            await waitFor(6000);
+            let matchedOffer = await baseBussiness.searchManager.getSearchResult(savedSearchRequest.id);
+            console.log("Matched Offer.....", JSON.stringify(matchedOffer));
+
+            expect(matchedOffer).to.have.length(1);
+            expect(matchedOffer[0].offerSearch.searchRequestId).to.equal(savedSearchRequest.id);
+            expect(matchedOffer[0].offerSearch.offerId).to.equal(savedOffer.id);
         } catch(e) {
             console.log("Something wrong in before", e);
         }
