@@ -1,14 +1,14 @@
 #!/bin/sh
 
-pushd base-node
+cd base-node
 ./gradlew clean build -x test
 docker build . -t base/node
-popd
+cd ..
 
-pushd base-matcher
+cd base-matcher
 ./gradlew clean build -x test
 docker build . -t base/matcher
-popd
+cd ..
 
 # remove dangling images
 docker rmi -f $(docker images --filter "dangling=true" -q)
