@@ -35,7 +35,7 @@ before_install:
   - docker-compose --version
   - git submodule init && git submodule update
   - cd $TRAVIS_BUILD_DIR
-  - build.sh
+  - ./build.sh
 
 node_js:
   - 'stable'
