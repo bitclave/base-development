@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker-compose up -d
+docker-compose up
 
 # Wait for base-node to start
 # until [ "`curl --silent --show-error --connect-timeout 1 -I http://localhost:8080 | grep 'Content-Type'`" != "" ];
