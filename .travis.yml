@@ -45,3 +45,7 @@ install:
 
 script:
   - npm test
+
+after_script:
+  - cd $TRAVIS_BUILD_DIR
+  - ./cleanup.sh
