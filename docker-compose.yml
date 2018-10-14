@@ -30,8 +30,6 @@ services:
       - "0x2bdd21761a483f71054e14f5b827213567971c676928d9a1808cbfa4b7501209,1000000000000000000000000"
   nodedb:
     image: postgres
-    ports:
-      - "5432:5432"
     restart: on-failure
     environment:
       - POSTGRES_PASSWORD=bitclave
