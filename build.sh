@@ -1,12 +1,12 @@
 #!/bin/sh
 
 cd base-node
-./gradlew clean build -x test
+./gradlew clean build -x test --console=plain
 docker build . -t base/node
 cd ..
 
 cd base-matcher
-./gradlew clean build -x test
+./gradlew clean build -x test --console=plain
 docker build . -t base/matcher
 cd ..
 
