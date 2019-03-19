@@ -10,6 +10,11 @@ pushd base-matcher
 docker build . -t base/matcher
 popd
 
+pushd base-rt-search
+./gradlew clean build -x test
+docker build . -t base/rt-search
+popd
+
 # remove dangling images
 docker rmi -f $(docker images --filter "dangling=true" -q)
 

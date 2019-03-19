@@ -1,6 +1,11 @@
 [submodule "base-node"]
 	path = base-node
 	url = https://github.com/bitclave/base-node.git
+	
 [submodule "base-matcher"]
 	path = base-matcher
 	url = https://github.com/bitclave/base-matcher.git
+	
+[submodule "base-rt-search"]
+	path = base-rt-search
+	url = https://github.com/bitclave/base-rt-search.git
