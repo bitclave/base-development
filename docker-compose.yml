@@ -102,6 +102,29 @@ services:
       - ELASTIC_PORT=9300
       - ELASTIC_OFFER_INDEX_NAME=docker-offer
 
+  auth-frontend:
+    image: base/auth-frontend
+    restart: on-failure
+    depends_on:
+      - base-node
+    ports:
+      - 5002:4200
+    environment:
+      - PRODUCTION=false
+      - BASE_NODE_API_URL=http://base-node:8080/
+      - AUTH_VIA_EMAIL=false
+      - KEYCLOACK_CONFIG_URL=https://baseauth.bitclave.com:8443/auth
+      - KEYCLOACK_CONFIG_REALM=BASE
+      - KEYCLOACK_CONFIG_CLIENT_ID=base-auth
+      - KEYCLOACK_LOGGED_IN_URL=http://auth-frontend:5002/auth/loggedin
+      - KEYCLOACK_LOGGED_OUT_URL=http://auth-frontend:5002/auth/logout/close
+      - KEYCLOACK_LOGOUT_URL=http://auth-frontend:5002/auth/logout
+      - LOGGER_URL=https://shepherd-backend-staging2.herokuapp.com/log
+      - LOGGER_LEVEL=debug
+      - LOGGER_APP=base-auth-frontend
+      - IS_BOTH_LOGIN_OPTIONS_SHOW=true
+      - FB_REDIRECT_URL=https://shepherd-staging.herokuapp.com/cabinet/dashboard/
+     
 volumes:
   postgres_data: {}
   esdata:

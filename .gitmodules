@@ -9,3 +9,7 @@
 [submodule "base-rt-search"]
 	path = base-rt-search
 	url = https://github.com/bitclave/base-rt-search.git
+
+[submodule "base-auth-frontend"]
+	path = base-auth-frontend
+	url = https://github.com/bitclave/base-auth-frontend.git

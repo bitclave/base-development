@@ -15,6 +15,10 @@ pushd base-rt-search
 docker build . -t base/rt-search
 popd
 
+pushd base-auth-frontend
+docker build . -t base/auth-frontend
+popd
+
 # remove dangling images
 docker rmi -f $(docker images --filter "dangling=true" -q)
 
