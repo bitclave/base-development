@@ -19,6 +19,10 @@ pushd base-auth-frontend
 docker build . -t base/auth-frontend
 popd
 
+pushd base-auth-sdk
+docker build . -t base/auth-sdk
+popd
+
 # remove dangling images
 docker rmi -f $(docker images --filter "dangling=true" -q)
 

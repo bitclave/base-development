@@ -13,3 +13,8 @@
 [submodule "base-auth-frontend"]
 	path = base-auth-frontend
 	url = https://github.com/bitclave/base-auth-frontend.git
+
+[submodule "base-auth-sdk"]
+	path = base-auth-sdk
+	url = https://github.com/bitclave/base-auth-sdk.git
+	

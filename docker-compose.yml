@@ -124,7 +124,17 @@ services:
       - LOGGER_APP=base-auth-frontend
       - IS_BOTH_LOGIN_OPTIONS_SHOW=true
       - FB_REDIRECT_URL=https://shepherd-staging.herokuapp.com/cabinet/dashboard/
-     
+ 
+  auth-sdk:
+    image: base/auth-sdk
+    restart: on-failure
+    ports:
+      - 5003:5003
+      - 5004:5004
+    environment:
+    - WIDGET_URL=http://auth-frontend:5002/
+    - WIDGET_LOCATION=auth/widget
+    
 volumes:
   postgres_data: {}
   esdata:
