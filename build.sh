@@ -23,6 +23,10 @@ pushd base-auth-sdk
 docker build . -t base/auth-sdk
 popd
 
+pushd shepherd-backend
+docker build . -t base/shepherd-backend
+popd
+
 # remove dangling images
 docker rmi -f $(docker images --filter "dangling=true" -q)
 

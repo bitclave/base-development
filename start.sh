@@ -1,5 +1,5 @@
 #!/bin/bash
-
+docker-compose -v
 docker-compose up -d
 
 # Wait for base-node to start

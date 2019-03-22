@@ -17,4 +17,7 @@
 [submodule "base-auth-sdk"]
 	path = base-auth-sdk
 	url = https://github.com/bitclave/base-auth-sdk.git
-	
+
+[submodule "shepherd-backend"]
+	path = shepherd-backend
+	url = https://github.com/bitclave/shepherd-backend.git
