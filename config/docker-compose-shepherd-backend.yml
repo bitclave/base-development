@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  shepherd-backend:
+    image: base/shepherd-backend
+    container_name: shepherd-backend
+    ports:
+      - 5006:5006
+    restart: on-failure
+    environment:
+      - NODE_ENV=docker
+      - PORT=5006
+      - PASS=7d188f87-c5a0-4961-af27-c5fa40b81f8a
+      - SITE_ORIGIN=localhost
+      - UNIQUE_PHRASE=unique message for sig
+      - ELASTIC_HOST=http://elasticsearch:9200
+      - ELASTIC_ENABLE=true
+      - ELASTIC_INDEX=bitclave-docker-log
+      - ELASTIC_TYPE=bitclave-docker-log
+      - MONGODB_URI=mongodb://mongodb:27017/bitclave
+      - BASE_PUBLIC_KEY=0388308aa01dfea2289332b5b260867ff869fa571a6de290033c09a536c529cf46
+      - BASE_NODE_URL=http://base-node:8080/
+
+networks:
+  default:
+    name: bitclave

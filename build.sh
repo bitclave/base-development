@@ -27,6 +27,10 @@ pushd shepherd-backend
 docker build . -t base/shepherd-backend
 popd
 
+pushd shepherd-frontend
+docker build . -t base/shepherd-frontend
+popd
+
 # remove dangling images
 docker rmi -f $(docker images --filter "dangling=true" -q)
 

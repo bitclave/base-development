@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  auth-frontend:
+    image: base/auth-frontend
+    container_name: auth-frontend
+    ports:
+      - 5005:4200
+    restart: on-failure
+    environment:
+      - PORT=4200
+      - PRODUCTION=false
+      - BASE_NODE_API_URL=http://localhost:8080/
+      - AUTH_VIA_EMAIL=false
+      - KEYCLOACK_CONFIG_URL=https://baseauth.bitclave.com:8443/auth
+      - KEYCLOACK_CONFIG_REALM=BASE
+      - KEYCLOACK_CONFIG_CLIENT_ID=base-auth
+      - KEYCLOACK_LOGGED_IN_URL=http://localhost:5005/auth/loggedin
+      - KEYCLOACK_LOGGED_OUT_URL=http://localhost:5005/auth/logout/close
+      - KEYCLOACK_LOGOUT_URL=http://localhost:5005/auth/logout
+      - LOGGER_URL=http://localhost:5006/log
+      - LOGGER_LEVEL=debug
+      - LOGGER_APP=base-auth-frontend
+      - IS_BOTH_LOGIN_OPTIONS_SHOW=true
+      - FB_REDIRECT_URL=http://localhost:5006/cabinet/dashboard/
+
+networks:
+  default:
+    name: bitclave

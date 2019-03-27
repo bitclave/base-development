@@ -21,3 +21,7 @@
 [submodule "shepherd-backend"]
 	path = shepherd-backend
 	url = https://github.com/bitclave/shepherd-backend.git
+
+[submodule "shepherd-frontend"]
+	path = shepherd-frontend
+	url = https://github.com/bitclave/shepherd.git
