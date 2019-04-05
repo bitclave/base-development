@@ -1,8 +1,8 @@
 version: '3.7'
 services:
-  shepherd-frontend:
-    image: base/shepherd-frontend
-    container_name: shepherd-frontend
+  shepherd:
+    image: base/shepherd
+    container_name: shepherd
     restart: on-failure
     ports:
       - 5007:4201

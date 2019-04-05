@@ -65,10 +65,10 @@ do
   sleep 10
 done
 
-docker-compose -f ./config/docker-compose-shepherd-frontend.yml up -d
+docker-compose -f ./config/docker-compose-shepherd.yml up -d
 
 until [ "`curl --silent --show-error --connect-timeout 1 -I http://localhost:5007 | grep 'HTTP'`" != "" ];
 do
-  echo --- wait shepherd-frontend. sleeping for 10 seconds
+  echo --- wait shepherd. sleeping for 10 seconds
   sleep 10
 done

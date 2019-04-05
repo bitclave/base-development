@@ -14,7 +14,7 @@
 
 # Services and ports (global->docker). docker container ls (after run build.sh)
 ```
-shepherd-frontend:  0.0.0.0:5007->4201/tcp                             
+shepherd:           0.0.0.0:5007->4201/tcp                             
 auth-frontend:      0.0.0.0:5005->4200/tcp
 rt-search:          0.0.0.0:5001->5001/tcp
 matcher:            ---

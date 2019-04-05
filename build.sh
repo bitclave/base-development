@@ -27,8 +27,8 @@ pushd shepherd-backend
 docker build . -t base/shepherd-backend
 popd
 
-pushd shepherd-frontend
-docker build . -t base/shepherd-frontend
+pushd shepherd
+docker build . -t base/shepherd
 popd
 
 # remove dangling images
