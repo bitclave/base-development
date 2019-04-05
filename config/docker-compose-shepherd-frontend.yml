@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  shepherd-frontend:
+    image: base/shepherd-frontend
+    container_name: shepherd-frontend
+    restart: on-failure
+    ports:
+      - 5007:4201
+    environment:
+      - PORT=4201
+      - BASE_AUTH_SDK_URL=http://localhost:5003/BASEAuthSDK.js
+      - PRODUCTION=false
+      - WEALTH_VALIDATOR_PK=02e3dc163a996abb002f35ae16b73cd722b19283a7edeb93bac25000022eb4ed26
+      - SHEPHERD_API_URL=http://localhost:5006/
+      - OWN_SITE_URL=http://localhost:5007
+      - REQUEST_ID_FOR_FEATURED_OFFERS=2785283
+      - LOGGER_URL=http://localhost:5006/log
+      - LOGGER_LEVEL=debug
+      - LOGGER_APP=shepherd-frontend
+
+networks:
+  default:
+    name: bitclave

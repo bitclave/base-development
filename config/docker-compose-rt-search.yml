@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  rt-search:
+    image: base/rt-search
+    container_name: rt-search
+    ports:
+      - 5001:5001
+    restart: on-failure
+    environment:
+      - PROFILE=docker
+      - PORT=5001
+      - NODE_END_POINT=http://base-node:8080/
+      - ELASTIC_CLUSTER_NAME=docker-cluster
+      - ELASTIC_HOST=elasticsearch
+      - ELASTIC_PORT=9300
+      - ELASTIC_OFFER_INDEX_NAME=docker-offer
+      - JAVA_OPTS=-Xms128m -Xmx128m
+
+networks:
+  default:
+    name: bitclave

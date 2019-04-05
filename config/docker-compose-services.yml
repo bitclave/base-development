@@ -1,0 +1,83 @@
+version: '3.7'
+services:
+  geth:
+    image: trufflesuite/ganache-cli
+    container_name: geth
+    ports:
+      - 8545:8545
+    command:
+      - ganache-cli
+      - -l 8000000
+      - -g 1000000000
+      - --account
+      - 0x2bdd21761a483f71054e14f5b827213567971c676928d9a1808cbfa4b7501200,1000000000000000000000000
+      - --account
+      - 0x2bdd21761a483f71054e14f5b827213567971c676928d9a1808cbfa4b7501201,1000000000000000000000000
+      - --account
+      - 0x2bdd21761a483f71054e14f5b827213567971c676928d9a1808cbfa4b7501202,1000000000000000000000000
+      - --account
+      - 0x2bdd21761a483f71054e14f5b827213567971c676928d9a1808cbfa4b7501203,1000000000000000000000000
+      - --account
+      - 0x2bdd21761a483f71054e14f5b827213567971c676928d9a1808cbfa4b7501204,1000000000000000000000000
+      - --account
+      - 0x2bdd21761a483f71054e14f5b827213567971c676928d9a1808cbfa4b7501205,1000000000000000000000000
+      - --account
+      - 0x2bdd21761a483f71054e14f5b827213567971c676928d9a1808cbfa4b7501206,1000000000000000000000000
+      - --account
+      - 0x2bdd21761a483f71054e14f5b827213567971c676928d9a1808cbfa4b7501207,1000000000000000000000000
+      - --account
+      - 0x2bdd21761a483f71054e14f5b827213567971c676928d9a1808cbfa4b7501208,1000000000000000000000000
+      - --account
+      - 0x2bdd21761a483f71054e14f5b827213567971c676928d9a1808cbfa4b7501209,1000000000000000000000000
+      
+  nodedb:
+    image: postgres
+    container_name: nodedb
+    ports:
+      - 54321:54322
+      - 5435:5432
+    restart: on-failure
+    environment:
+      - POSTGRES_DB=docker
+      - POSTGRES_PASSWORD=bitclave
+      - POSTGRES_USER=docker
+    volumes:
+      - ../postgres-dump.sql:/docker-entrypoint-initdb.d/10-postgres-dump.sql
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 27017:27017
+    logging:
+      driver: none
+      
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.6.1
+    container_name: elasticsearch
+    ports:
+      - 9300:9300
+      - 9200:9200
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms128m -Xmx128m"
+      - JAVA_OPTS=-Xms128m -Xmx128m
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+      
+volumes:
+  esdata: {}
+
+networks:
+  default:
+    name: bitclave

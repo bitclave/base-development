@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  auth-sdk:
+    image: base/auth-sdk
+    container_name: auth-sdk
+    ports:
+      - 5003:5003
+      - 5004:5004
+    restart: on-failure
+    environment:
+      - WIDGET_URL=http://localhost:5005/
+      - WIDGET_LOCATION=auth/widget
+
+networks:
+  default:
+    name: bitclave

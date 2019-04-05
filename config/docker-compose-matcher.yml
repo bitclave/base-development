@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  matcher:
+    image: base/matcher
+    container_name: matcher
+    restart: on-failure
+    environment:
+      - BASE_NODE_URL=http://base-node:8080/
+      - JAVA_OPTS=-Xms128m -Xmx128m
+
+networks:
+  default:
+    name: bitclave
