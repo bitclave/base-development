@@ -16,6 +16,7 @@ docker build . -t base/rt-search
 popd
 
 pushd base-auth-frontend
+rm -rf  .git
 docker build . -t base/auth-frontend
 popd
 
@@ -24,6 +25,7 @@ docker build . -t base/auth-sdk
 popd
 
 pushd shepherd-backend
+rm -rf  .git
 docker build . -t base/shepherd-backend
 popd
 
